@@ -1,0 +1,45 @@
+{
+  "name": "discogsapi",
+  "version": "1.0.0",
+  "description": "Backend API for Discogs Music Database",
+  "main": "discogsAPI.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JPDesignTech/DiscogsAPI"
+  },
+  "author": "Jean",
+  "license": "UNLICENSED",
+  "homepage": "https://github.com/JPDesignTech/DiscogsAPI#readme",
+  "scripts": {
+    "setup": "gcloud auth configure-docker",
+    "start": "NODE_ENV=production node --max-old-space-size=3072 discogsAPI.js",
+    "beta": "NODE_ENV=beta node --max-old-space-size=3072 discogsAPI.js",
+    "dev": "NODE_ENV=development nodemon --max-old-space-size=3072 discogsAPI.js",
+    "dev:inspect": "NODE_ENV=development nodemon --max-old-space-size=3072 --inspect discogsAPI.js",
+    "dev:setup": "brew install gstreamer gst-plugins-base gst-plugins-good",
+    "docker:build": "docker build -t discogsAPI:latest ./",
+    "docker:run": "docker run -d -p 9898:9898 discogsAPI:latest",
+    "deploy": "gcloud config set project personalportfolio-4caf3  && gcloud app deploy --no-promote --version v1-1-rc1"
+  },
+  "dependencies": {
+    "@google-cloud/firestore": "^4.1.1",
+    "@google-cloud/logging-winston": "^4.1.1",
+    "axios": "^0.27.2",
+    "body-parser": "^1.19.0",
+    "command-promise": "^2.0.1",
+    "del": "^6.0.0",
+    "express": "^4.17.1",
+    "firebase": "^9.1.2",
+    "firebase-admin": "^9.0.0",
+    "path": "^0.12.7",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6",
+    "web-file-polyfill": "^1.0.1",
+    "winston": "^2.4.2",
+    "write": "^2.0.0",
+    "yes-https": "^2.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}
