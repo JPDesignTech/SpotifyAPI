@@ -107,3 +107,7 @@ modules/config/prod.js
 modules/config/dev.js
 modules/config/beta.js
 private/*
+
+.vscode/*
+.vscode/
+.vscode
