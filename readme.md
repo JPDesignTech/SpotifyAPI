@@ -20,4 +20,4 @@ Showcasing Spotify's API within my Portfolio backend system. This API grabs meta
 3. Open Localhost:9898
 
 ## Sources & References:
- • https://www.discogs.com/developers
+ • https://developer.spotify.com/documentation/web-api/reference/#/

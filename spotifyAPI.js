@@ -3,7 +3,7 @@
 const express = require("express");
 const parser = require("body-parser");
 const https = require("yes-https");
-const DiscogsAPI = express();
+const SpotifyAPI = express();
 
 // const { firebase } = require("firebase/app");
 // const firestore = require("firebase/firestore");
@@ -16,7 +16,7 @@ let config;
 switch (env) {
   case "production":
     config = require("./modules/config/prod");
-    DiscogsAPI.use(https());
+    SpotifyAPI.use(https());
     break;
 
   case "beta":
@@ -29,7 +29,7 @@ switch (env) {
 
   default:
     config = require("./modules/config/prod");
-    DiscogsAPI.use(https());
+    SpotifyAPI.use(https());
     break;
 }
 const port = env == "production" ? process.env.PORT : config.port;
@@ -43,36 +43,26 @@ firebase.initializeApp({
   // databaseAuthVariableOverride: { uid: config.firebase.uid }
 });
 
-DiscogsAPI.use(parser.json());
-DiscogsAPI.use(parser.urlencoded({ extended: false }));
-DiscogsAPI.use(cors);
+SpotifyAPI.use(parser.json());
+SpotifyAPI.use(parser.urlencoded({ extended: false }));
+SpotifyAPI.use(cors);
 
 const routes = {
   home: {
     get: require("./routes/home/get"),
   },
-  discogs: {
-    get: require("./routes/discogs/route"),
-    post: require("./routes/discogs/route"),
-  },
-  notion: {
-    vinyls: {
-      get: require("./routes/notion/route"),
-      post: require("./routes/notion/route"),
-    },
+  spotify: {
+    get: require("./routes/spotify/route"),
   },
 };
 
-DiscogsAPI.use("/", routes.home.get);
-DiscogsAPI.use("/api/discogs", routes.discogs.get);
-DiscogsAPI.use("/api/discogs", routes.discogs.post);
-DiscogsAPI.use("/api/vinyls", routes.notion.vinyls.get);
-DiscogsAPI.use("/api/vinyls", routes.notion.vinyls.post);
+SpotifyAPI.use("/", routes.home.get);
+SpotifyAPI.use("/api/spotify", routes.spotify.get);
 
-DiscogsAPI.listen(port, () => {
+SpotifyAPI.listen(port, () => {
   if (env == "production") {
-    logger.log(`PortfolioAPI is up in ${env} mode on port ${port}`);
+    logger.log(`SpotifyAPI is up in ${env} mode on port ${port}`);
   } else {
-    logger.log("info", `PortfolioAPI is up in ${env} mode on port ${port}`);
+    logger.log("info", `SpotifyAPI is up in ${env} mode on port ${port}`);
   }
 });

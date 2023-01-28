@@ -5,11 +5,11 @@
   "main": "discogsAPI.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JPDesignTech/DiscogsAPI"
+    "url": "git+https://github.com/JPDesignTech/SpotifyAPI"
   },
   "author": "Jean",
   "license": "UNLICENSED",
-  "homepage": "https://github.com/JPDesignTech/DiscogsAPI#readme",
+  "homepage": "https://github.com/JPDesignTech/SpotifyAPI#readme",
   "scripts": {
     "setup": "gcloud auth configure-docker",
     "start": "NODE_ENV=production node --max-old-space-size=3072 discogsAPI.js",
